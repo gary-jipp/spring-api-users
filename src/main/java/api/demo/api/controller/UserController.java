@@ -1,15 +1,18 @@
 package api.demo.api.controller;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import api.demo.api.model.User;
 import api.demo.service.UserService;
@@ -53,8 +56,16 @@ public class UserController {
   }
 
   @PostMapping("/users")
-  public User addUser(@RequestBody User user) {
-    return userService.addUser(user);
+  public ResponseEntity<User> addUser(@RequestBody User user) {
+    User savedUser = userService.addUser(user);
+
+    // Build the Location URI for the created resource
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+        .path("/{id}")
+        .buildAndExpand(savedUser.getId())
+        .toUri();
+
+    return ResponseEntity.created(location).body(savedUser);
   }
 
 }
