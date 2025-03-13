@@ -18,6 +18,10 @@ public class UserService {
     this.userRepository = userRepository;
   }
 
+  public List<User> getAllUsers() {
+    return userRepository.findAll();
+  }
+
   public Optional<User> getUser(Integer id) {
     return userRepository.findById(id);
   }

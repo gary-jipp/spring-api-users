@@ -21,6 +21,11 @@ public class UserController {
     this.userService = userService;
   }
 
+  @GetMapping("/users")
+  public List<User> getAllUsers() {
+    return userService.getAllUsers();
+  }
+
   @GetMapping("/user")
   public User getUser(@RequestParam Integer id) {
     Optional<User> user = userService.getUser(id);
