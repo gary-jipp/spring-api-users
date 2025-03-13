@@ -1,5 +1,6 @@
 package api.demo.api.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +27,22 @@ public class UserController {
     if (user.isPresent()) {
       return (User) user.get();
     }
-
     return null;
   }
 
   @GetMapping("/user/{id}")
-  public User getUserPath(@PathVariable  Integer id) {
+  public User getUserPath(@PathVariable Integer id) {
     Optional<User> user = userService.getUser(id);
     if (user.isPresent()) {
       return (User) user.get();
     }
-
     return null;
+  }
+
+  // Endpoint to find users by email
+  @GetMapping("/email/{email}")
+  public List<User> getUserByEmail(@PathVariable String email) {
+    return userService.getUsersByEmail(email);
   }
 
 }
