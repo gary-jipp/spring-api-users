@@ -48,10 +48,15 @@
 		</dependency>
 
     <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-devtools</artifactId>
-        <optional>true</optional>
-        <scope>provided</scope> <!-- Ensures it's used only in development -->
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+      <scope>provided</scope> <!-- Ensures it's used only in development -->
     </dependency>
 
       <!-- Spring Boot JPA Starter -->
@@ -68,8 +73,6 @@
     </dependency>
 
 	</dependencies>
-
-
 
 	<build>
 		<plugins>
