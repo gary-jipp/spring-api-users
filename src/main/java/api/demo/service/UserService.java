@@ -11,9 +11,10 @@ import api.demo.api.repository.UserRepository;
 
 @Service
 public class UserService {
-  private final UserRepository userRepository;
 
-  @Autowired
+  @Autowired  // Not needed if using only one constructor
+  private UserRepository userRepository;
+
   public UserService(UserRepository userRepository) {
     this.userRepository = userRepository;
   }
