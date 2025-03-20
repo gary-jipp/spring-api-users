@@ -21,7 +21,7 @@ import api.demo.service.UserService;
 public class UserController {
   private UserService userService;
 
-  @Autowired
+  // @Autowired  // Not needed since only 1 constructor
   public UserController(UserService userService) {
     this.userService = userService;
   }
